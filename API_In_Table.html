@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+     
+     <table align="center"  border="1">
+          <thead>
+               <tr>
+                    <th rowspan="2">ID</th>
+                    <th rowspan="2">Name</th>
+                    <th rowspan="2">Age</th>
+                    <th rowspan="2">Hair
+                    <br>
+                    (color,type)</th>
+                    <th rowspan="2">Address</th>
+                    <th colspan="2">Company( deparment , Address)</th>
+               </tr>
+               <tr>                 
+                    
+                    
+               </tr>
+          </thead>
+          <tbody id="record"></tbody>
+     </table>
+
+     <script>
+          fetch(`https://dummyjson.com/users`)
+          .then(response => response.json())
+          .then( (data) => {
+               
+               let tbl="";
+               let allusers = data.users;
+               console.log(allusers);
+               let user = allusers.map((val,i)=>{
+                    return (tbl += `
+                        <tr style="text-align:center;">
+                              <td>${val.id}</td>
+                              <td>${val.firstName} ${val.lastName}</td>
+                              <td>${val.age}</td>
+                              <td>${val.hair.color} ,${val.hair.type}</td>
+                              <td>${val.address.address} , ${val.address.city}</td>
+                              <td>${val.company.department}</td>
+                              <td>${val.company.address.address}</td>
+                         </tr>
+                    `)
+               })
+
+               document.getElementById('record').innerHTML = tbl;
+          })
+     </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     
+</head>
+<body>
+     <table border="1" align="center">
+          <thead>
+               <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>body</th>
+               </tr>
+          </thead>
+          <tbody id="record"></tbody>
+     </table>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script>
+          $.ajax({
+               type:"GET",
+               url:"https://jsonplaceholder.typicode.com/albums",
+               success:function(res){
+                    console.log(res);
+                    let tbl="";
+                    res.map((val)=>{
+                         return (
+                              tbl += `
+                                   <tr>
+                                        <td>${val.id}</td>     
+                                        <td>${val.title}</td>     
+                                        <td>${val.id}</td>     
+                                   </tr>
+                              `
+                         )
+                    })
+
+                    document.getElementById('record').innerHTML=tbl;
+               }
+          })
+     </script>
+     
+</body>
+</html>

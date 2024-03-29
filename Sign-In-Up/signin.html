@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8"
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>API</title>
+</head>
+<body>
+     <center>
+          <h1>User Login</h1>
+     <table border="1" cellpadding="5"
+          <thead>
+               <tr>
+                    <th>Name</th>
+                    <td> <input type="text" id="name" ></td>
+               </tr>
+               <tr>
+                    <th>Password</th>
+                    <td><input type="text" id="password" /></td>
+               </tr>
+          </thead>
+          
+     </table>
+  <br>
+  <button style="background-color: rgb(209, 209, 209);color: black;padding: 2px 10px;text-transform: capitalize;font-size: 14px;border: 1px solid black;border-radius: 3px;" onclick="loginUser()">Login</button>
+  
+  <a style="background-color: rgb(209, 209, 209);color: black;padding: 2px 10px;text-transform: capitalize;font-size: 14px;border: 1px solid black;border-radius: 3px;" href="register.html">Sign Up</a>
+</center>
+
+<script>
+
+const loginUser=()=> {
+     const name = document.getElementById('name').value;
+     const password =document.getElementById("password").value;
+    
+     const allvalues = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : [];
+     
+     const user = allvalues.find((item)=>{
+          return (item.username===name)&&(item.password===password);
+     })
+     console.log(user);
+     if (user){
+        localStorage.setItem('login',JSON.stringify(user));
+         alert(`Welcome ${user.username}`);
+         window.location.href="dashboard.html";
+     } 
+     else{
+          alert("Invalid User Name or Password");
+     }
+}
+
+</script>
+</body>
+</html>
